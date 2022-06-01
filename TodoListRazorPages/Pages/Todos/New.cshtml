@@ -1,0 +1,17 @@
+﻿@page
+@model TodoListRazorPages.Pages.Todos.NewModel
+@{      
+    ViewData["Title"] = "New Todo";
+}
+
+<h1>New Todo</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="NewTodo.Title"></label>
+        <input type="text" asp-for="NewTodo.Title" class="form-control" />
+        <span asp-validation-for="NewTodo.Title" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+</form>

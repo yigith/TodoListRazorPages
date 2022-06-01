@@ -1,0 +1,31 @@
+﻿@page
+@model TodoListRazorPages.Pages.Todos.IndexModel
+@{            
+    ViewData["Title"] = "Todos";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info">
+        @Model.Message
+    </div>
+}
+
+<div class="my-2">
+    <a asp-page="/Todos/New">New Todo</a>
+</div>
+
+<form method="post">
+    @for (int i = 0; i < Model.TodoItems.Count; i++)
+    {
+        <div class="d-flex align-items-baseline mb-2">
+            <input type="hidden" asp-for="TodoItems[i].Id" />
+            <input type="checkbox" asp-for="TodoItems[i].IsDone" class="mr-2" />
+            <input type="text" asp-for="TodoItems[i].Title" class="form-control mr-2" />
+            <span asp-validation-for="TodoItems[i].Title" class="text-danger"></span>
+        </div>
+    }
+
+    <button class="btn btn-primary mt-2" asp-page-handler="save">Save All</button>
+    <button class="btn btn-danger mt-2" asp-page-handler="delete">Delete Completed Tasks</button>
+</form>
